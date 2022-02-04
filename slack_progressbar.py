@@ -24,7 +24,7 @@ class SlackProgress():
 
 
     def progressbar_init(self):
-        result = client.chat_postMessage(channel=self.channel,
+        result = self.client.chat_postMessage(channel=self.channel,
                                          text=' 0%')
         self.ts = str(result['ts'])
         print(self.ts)
@@ -38,7 +38,7 @@ class SlackProgress():
             self.progress_timing(idx)
 
             bar = chr(9608) * (prog//5)
-            result = client.chat_update(channel=self.channel_id,
+            result = self.client.chat_update(channel=self.channel_id,
                                         ts = self.ts,
                                         text='{0} {1:.0f}% | {2} | {3:.1f} s'.format(bar, prog, self.speed, self.etime))
             self.nbar += 1
