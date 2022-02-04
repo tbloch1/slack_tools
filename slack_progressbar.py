@@ -64,7 +64,7 @@ class SlackProgress():
         channel_id = None
         try:
             # Call the conversations.list method using the WebClient
-            for response in client.conversations_list():
+            for response in self.client.conversations_list():
                 if channel_id is not None:
                     break
                 for channel in response["channels"]:
