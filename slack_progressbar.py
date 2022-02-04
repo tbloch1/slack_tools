@@ -10,6 +10,13 @@ class SlackProgress():
 
 
     def iter(self, iterable):
+        '''
+        Function to wrap the iterable and pass information
+        to the progress bar functions.
+        
+        Iterable: something to loop over, can be list/array/iterable/etc.
+        '''
+        
         self.nmax = len(iterable)
         self.nbar = 0
         self.stime = time.time()
@@ -24,6 +31,11 @@ class SlackProgress():
 
 
     def progressbar_init(self):
+        '''
+        Function that sends initial slack message, which
+        is subsequently updated with the progress bar.
+        '''
+        
         result = self.client.chat_postMessage(channel=self.channel,
                                          text=' 0%')
         self.ts = str(result['ts'])
@@ -32,6 +44,12 @@ class SlackProgress():
 
 
     def slack_progress_bar(self, idx):
+        '''
+        Function which updates the slack message with
+        the current progress, speed and estimated time
+        to completion.
+        '''
+        
         prog = round(100 * idx / self.nmax)
         if (prog//5) > self.nbar:
 
@@ -45,6 +63,10 @@ class SlackProgress():
 
 
     def progress_timing(self, idx):
+        '''
+        Function to calculate timing related information.
+        '''
+        
         c_time = time.time()
         its_per_s = idx / (c_time - self.stime)
         s_per_it = (c_time - self.stime) / idx
@@ -61,17 +83,17 @@ class SlackProgress():
 
 
     def channel_id(self):
+        '''
+        Function to get the channel ID from the channel name.
+        '''
         channel_id = None
         try:
-            # Call the conversations.list method using the WebClient
             for response in self.client.conversations_list():
                 if channel_id is not None:
                     break
                 for channel in response["channels"]:
                     if channel["name"] == self.channel:
                         channel_id = channel["id"]
-                        #Print result
-                        # print(f"Found conversation ID: {channel_id}")
                         break
             self.channel_id = channel_id
         except SlackApiError as e:
