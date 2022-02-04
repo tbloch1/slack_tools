@@ -68,7 +68,7 @@ class SlackProgress():
                 if channel_id is not None:
                     break
                 for channel in response["channels"]:
-                    if channel["name"] == channel_name:
+                    if channel["name"] == self.channel:
                         channel_id = channel["id"]
                         #Print result
                         # print(f"Found conversation ID: {channel_id}")
