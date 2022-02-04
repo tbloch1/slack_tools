@@ -11,4 +11,4 @@ To make any of this work, you have to have a slack bot/app in your slack workspa
 
 ## Tools
 
-- **Progress bar**: The SlackProgress class in slack-progressbar.py allows one to wrap an iterable and automatically send and update a progress bar in a specified slack channel.
+- **Progress bar**: The `SlackProgress` class in `slack-progressbar.py` allows one to wrap an iterable and automatically send and update a progress bar in a specified slack channel.
