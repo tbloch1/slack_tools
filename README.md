@@ -1,6 +1,6 @@
 # slack_tools
 
-A set of tools I've been using to send information from Python to Slack.
+A set of tools I've been using to send information from Python to Slack using the [Slack API](https://github.com/slackapi/python-slack-sdk).
 
 ## Setting up a slack bot
 
